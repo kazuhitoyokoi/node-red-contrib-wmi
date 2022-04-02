@@ -13,6 +13,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install -g node-red-nodegen
       - run: node-red-nodegen flows.json
+      - run: mv examples node-red-contrib-*/
       - run: cd node-red-contrib-*; npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

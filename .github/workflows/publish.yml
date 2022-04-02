@@ -1,0 +1,18 @@
+name: Publish Node-RED node
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: npm install -g node-red-nodegen
+      - run: node-red-nodegen flows.json
+      - run: cd node-red-contrib-*; npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

@@ -15,3 +15,4 @@ jobs:
     - run: node-red-nodegen flows.json
     - run: mv examples node-red-contrib-*/
     - run: cd node-red-contrib-*; node-red-dev validate
+    - run: echo $GITHUB_REPOSITORY

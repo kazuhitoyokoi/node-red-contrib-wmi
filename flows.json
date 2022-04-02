@@ -1,0 +1,242 @@
+[
+    {
+        "id": "1502f21895a467b2",
+        "type": "subflow",
+        "name": "wmi",
+        "info": "This node retrieves the information of the WMI object on Windows OS.\r\nCurrently, this node supports the following objects in the pull-down menu on the node property UI.\r\n\r\n- [Win32_Processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)\r\n- [Win32_BIOS](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bios)\r\n- [Win32_LogicalDisk](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-logicaldisk)\r\n- [Win32_Battery](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery)\r\n\r\nIf you want to get other WMI objects, you can specify the object name in `msg.object`.\r\n\r\n### Inputs\r\n- `object` - _string_\r\n\r\n  WMI object name (optional)\r\n\r\n### Outputs\r\n- `payload` - _object_\r\n\r\n  WMI object in JSON format\r\n\r\n**Note**: This node can be used on the Windows OS only.",
+        "category": "function",
+        "in": [
+            {
+                "x": 60,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "49bc3c94198cb47a"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1140,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "577b676db8dff1da",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "object",
+                "type": "str",
+                "value": "Win32_Processor",
+                "ui": {
+                    "icon": "font-awesome/fa-desktop",
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Win32_Processor"
+                                },
+                                "v": "Win32_Processor"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Win32_BIOS"
+                                },
+                                "v": "Win32_BIOS"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Win32_LogicalDisk"
+                                },
+                                "v": "Win32_LogicalDisk"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Win32_Battery"
+                                },
+                                "v": "Win32_Battery"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "module": "node-red-contrib-wmi",
+            "type": "wmi",
+            "version": "0.0.1",
+            "author": "kazuhitoyokoi@nodered.jp",
+            "desc": "A node to retrieve WMI object on Windows OS",
+            "keywords": "node-red,wmi,windows",
+            "license": "Apache-2.0"
+        },
+        "color": "#E9967A",
+        "icon": "font-awesome/fa-desktop",
+        "status": {
+            "x": 1000,
+            "y": 140,
+            "wires": [
+                {
+                    "id": "1441a297ee2d57e2",
+                    "port": 0
+                },
+                {
+                    "id": "d7b32c02dafd1b17",
+                    "port": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": "d7b32c02dafd1b17",
+        "type": "exec",
+        "z": "1502f21895a467b2",
+        "command": "cmd /c powershell",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 850,
+        "y": 100,
+        "wires": [
+            [
+                "577b676db8dff1da"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "577b676db8dff1da",
+        "type": "json",
+        "z": "1502f21895a467b2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1030,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8c81d56ecdf5c1c",
+        "type": "change",
+        "z": "1502f21895a467b2",
+        "name": "create command using msg.object",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "'\"Get-WmiObject '&object&'|ConvertTo-Json\"'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "d7b32c02dafd1b17"
+            ]
+        ]
+    },
+    {
+        "id": "1441a297ee2d57e2",
+        "type": "status",
+        "z": "1502f21895a467b2",
+        "name": "",
+        "scope": [
+            "d7b32c02dafd1b17"
+        ],
+        "x": 880,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "49bc3c94198cb47a",
+        "type": "switch",
+        "z": "1502f21895a467b2",
+        "name": "msg.object is specified?",
+        "property": "object",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 100,
+        "wires": [
+            [
+                "c04f60819b88fbcb"
+            ],
+            [
+                "e8c81d56ecdf5c1c"
+            ]
+        ]
+    },
+    {
+        "id": "c04f60819b88fbcb",
+        "type": "change",
+        "z": "1502f21895a467b2",
+        "name": "create command using environment variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "'\"Get-WmiObject '&$env('object')&'|ConvertTo-Json\"'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "d7b32c02dafd1b17"
+            ]
+        ]
+    },
+    {
+        "id": "8691cfc88b3b60e5",
+        "type": "subflow:1502f21895a467b2",
+        "z": "7089087274cfd256",
+        "name": "",
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "eb385fbdac73d5fb"
+            ]
+        ]
+    }
+]

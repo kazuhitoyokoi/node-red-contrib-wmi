@@ -1,4 +1,3 @@
-
 name: Build Node-RED node
 on:
   push:

@@ -15,4 +15,3 @@ jobs:
     - run: cat node-red-contrib-*/package.json | jq ".repository.type|=\"git\"|.repository.url|=\"https://github.com/$GITHUB_REPOSITORY.git\"" > tmp; mv tmp node-red-contrib-*/package.json
     - run: mv examples node-red-contrib-*/
     - run: cd node-red-contrib-*/; node-red-dev validate
-    - run: cat node-red-contrib-*/package.json

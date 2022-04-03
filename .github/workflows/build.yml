@@ -1,11 +1,11 @@
 name: Build Node-RED node
 on:
   push:
-    branches: *
+    branches: '*'
     tags:
       - 'v*.*.*'
   pull_request:
-    branches: *
+    branches: '*'
   schedule:
     - cron: '0 0 * * *'
 jobs:

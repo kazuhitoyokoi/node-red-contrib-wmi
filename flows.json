@@ -70,7 +70,7 @@
         "meta": {
             "module": "node-red-contrib-wmi",
             "type": "wmi",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "author": "kazuhitoyokoi@nodered.jp",
             "desc": "A node to retrieve WMI object on Windows OS",
             "keywords": "node-red,wmi,windows",

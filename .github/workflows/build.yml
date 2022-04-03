@@ -1,11 +1,13 @@
 name: Build Node-RED node
 on:
   push:
-    branches: [ main ]
+    branches: [ ＊ ]
     tags:
       - "v*.*.*"
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest

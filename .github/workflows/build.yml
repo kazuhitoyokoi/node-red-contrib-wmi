@@ -18,3 +18,11 @@ jobs:
         cat package.json | jq ".bugs.url|=\"https://github.com/$GITHUB_ACTOR\"" > tmp; mv tmp package.json
         mv ../examples .
         node-red-dev validate
+    - uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./node-red-contrib-*.tgz
+        asset_name: node-red-contrib-*.tgz
+        asset_content_type: application/tgz

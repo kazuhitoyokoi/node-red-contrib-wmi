@@ -19,3 +19,4 @@ jobs:
         mv ../examples .
         node-red-dev validate
     - uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')

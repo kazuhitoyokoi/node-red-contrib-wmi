@@ -68,7 +68,7 @@
             }
         ],
         "meta": {
-            "module": "@kazuhitoyokoi/node-red-contrib-wmi",
+            "module": "node-red-contrib-wmi",
             "type": "wmi",
             "version": "0.0.2",
             "author": "kazuhitoyokoi@nodered.jp",

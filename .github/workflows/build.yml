@@ -14,7 +14,7 @@ jobs:
     - uses: actions/setup-node@v3
     - run: |
         npm install -g node-red-nodegen node-red-dev
-        node-red-nodegen flows.json --tgz
+        node-red-nodegen flows.json
         cd node-red-contrib-*/
         #cat package.json | jq ".repository.type|=\"git\"|.repository.url|=\"https://github.com/$GITHUB_REPOSITORY.git\"" > tmp; mv tmp package.json
         cat package.json | jq ".bugs.url|=\"https://github.com/$GITHUB_ACTOR\"" > tmp; mv tmp package.json

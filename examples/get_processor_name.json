@@ -3,12 +3,12 @@
         "id": "1502f21895a467b2",
         "type": "subflow",
         "name": "wmi",
-        "info": "This node retrieves the information of the WMI object on Windows OS.\r\nCurrently, this node supports the following objects in the pull-down menu on the node property UI.\r\n\r\n- [Win32_Processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)\r\n- [Win32_BIOS](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bios)\r\n- [Win32_LogicalDisk](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-logicaldisk)\r\n- [Win32_Battery](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery)\r\n\r\nIf you want to get other WMI objects, you can specify the object name in `msg.object`.\r\n\r\n### Inputs\r\n- `object` - _string_\r\n\r\n  WMI object name (optional)\r\n\r\n### Outputs\r\n- `payload` - _object_\r\n\r\n  WMI object in JSON format\r\n\r\n**Note**: This node can be used on the Windows OS only.",
+        "info": "This node retrieves the information of the WMI object on Windows OS.\r\nCurrently, this node supports the following objects in the pull-down menu on the node property UI.\r\n\r\n- [Processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)\r\n- [BIOS](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bios)\r\n- [LogicalDisk](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-logicaldisk)\r\n- [PointingDevice](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pointingdevice)\r\n- [Keyboard](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-keyboard)\r\n- [Battery](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery)\r\n- [OperatingSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-operatingsystem)\r\n- [ComputerSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-computersystem)\r\n- [SystemEnclosure](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-systemenclosure)\r\n- [Desktop](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktop)\r\n- [DesktopMonitor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktopmonitor)\r\n- [UserAccount](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-useraccount)\r\n\r\nIf you want to get other WMI objects, you can specify the object name in `msg.object`.\r\n\r\n### Inputs\r\n- `object` - _string_\r\n\r\n  WMI object name (optional)\r\n\r\n### Outputs\r\n- `payload` - _object_\r\n\r\n  WMI object in JSON format\r\n\r\n**Note**: This node can be used on the Windows OS only.",
         "category": "function",
         "in": [
             {
                 "x": 60,
-                "y": 100,
+                "y": 120,
                 "wires": [
                     {
                         "id": "49bc3c94198cb47a"
@@ -19,7 +19,7 @@
         "out": [
             {
                 "x": 1140,
-                "y": 60,
+                "y": 80,
                 "wires": [
                     {
                         "id": "577b676db8dff1da",
@@ -40,27 +40,75 @@
                         "opts": [
                             {
                                 "l": {
-                                    "en-US": "Win32_Processor"
+                                    "en-US": "Processor"
                                 },
                                 "v": "Win32_Processor"
                             },
                             {
                                 "l": {
-                                    "en-US": "Win32_BIOS"
+                                    "en-US": "BIOS"
                                 },
                                 "v": "Win32_BIOS"
                             },
                             {
                                 "l": {
-                                    "en-US": "Win32_LogicalDisk"
+                                    "en-US": "LogicalDisk"
                                 },
                                 "v": "Win32_LogicalDisk"
                             },
                             {
                                 "l": {
-                                    "en-US": "Win32_Battery"
+                                    "en-US": "PointingDevice"
+                                },
+                                "v": "Win32_PointingDevice"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Keyboard"
+                                },
+                                "v": "Win32_Keyboard"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Battery"
                                 },
                                 "v": "Win32_Battery"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "OperatingSystem"
+                                },
+                                "v": "Win32_OperatingSystem"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "ComputerSystem"
+                                },
+                                "v": "Win32_ComputerSystem"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "SystemEnclosure"
+                                },
+                                "v": "Win32_SystemEnclosure"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Desktop"
+                                },
+                                "v": "Win32_Desktop"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "DesktopMonitor"
+                                },
+                                "v": "Win32_DesktopMonitor"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "UserAccount"
+                                },
+                                "v": "Win32_UserAccount"
                             }
                         ]
                     }
@@ -70,7 +118,7 @@
         "meta": {
             "module": "node-red-contrib-wmi",
             "type": "wmi",
-            "version": "0.0.1",
+            "version": "0.1.6",
             "author": "kazuhitoyokoi@nodered.jp",
             "desc": "A node to retrieve WMI object on Windows OS",
             "keywords": "node-red,wmi,windows",
@@ -80,7 +128,7 @@
         "icon": "font-awesome/fa-desktop",
         "status": {
             "x": 1000,
-            "y": 140,
+            "y": 160,
             "wires": [
                 {
                     "id": "1441a297ee2d57e2",
@@ -106,7 +154,7 @@
         "oldrc": false,
         "name": "",
         "x": 850,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "577b676db8dff1da"
@@ -124,7 +172,7 @@
         "action": "",
         "pretty": false,
         "x": 1030,
-        "y": 60,
+        "y": 80,
         "wires": [
             []
         ]
@@ -149,7 +197,7 @@
         "to": "",
         "reg": false,
         "x": 520,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
                 "d7b32c02dafd1b17"
@@ -165,7 +213,7 @@
             "d7b32c02dafd1b17"
         ],
         "x": 880,
-        "y": 180,
+        "y": 200,
         "wires": [
             []
         ]
@@ -182,20 +230,29 @@
                 "t": "null"
             },
             {
+                "t": "regex",
+                "v": "^Win32_",
+                "vt": "str",
+                "case": false
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
+        "outputs": 3,
         "x": 230,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "c04f60819b88fbcb"
             ],
             [
                 "e8c81d56ecdf5c1c"
+            ],
+            [
+                "4588320aad394599"
             ]
         ]
     },
@@ -219,7 +276,34 @@
         "to": "",
         "reg": false,
         "x": 550,
-        "y": 80,
+        "y": 60,
+        "wires": [
+            [
+                "d7b32c02dafd1b17"
+            ]
+        ]
+    },
+    {
+        "id": "4588320aad394599",
+        "type": "change",
+        "z": "1502f21895a467b2",
+        "name": "create command using msg.object",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "'\"Get-WmiObject Win32_'&object&'|ConvertTo-Json\"'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 180,
         "wires": [
             [
                 "d7b32c02dafd1b17"
@@ -231,12 +315,17 @@
         "type": "subflow:1502f21895a467b2",
         "z": "7089087274cfd256",
         "name": "",
-        "x": 570,
-        "y": 220,
+        "env": [
+            {
+                "name": "object",
+                "value": "Win32_ComputerSystem",
+                "type": "str"
+            }
+        ],
+        "x": 310,
+        "y": 120,
         "wires": [
-            [
-                "eb385fbdac73d5fb"
-            ]
+            []
         ]
     }
 ]

@@ -3,7 +3,7 @@
         "id": "1502f21895a467b2",
         "type": "subflow",
         "name": "wmi",
-        "info": "This node retrieves the information of the WMI object on Windows OS.\r\nCurrently, this node supports the following objects in the pull-down menu on the node property UI.\r\n\r\n- [Processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)\r\n- [BIOS](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bios)\r\n- [LogicalDisk](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-logicaldisk)\r\n- [CDROMDrive](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-cdromdrive)\r\n- [PointingDevice](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pointingdevice)\r\n- [Keyboard](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-keyboard)\r\n- [Battery](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery)\r\n- [OperatingSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-operatingsystem)\r\n- [ComputerSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-computersystem)\r\n- [SystemEnclosure](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-systemenclosure)\r\n- [Desktop](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktop)\r\n- [DesktopMonitor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktopmonitor)\r\n- [UserAccount](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-useraccount)\r\n\r\nIf you want to get other WMI objects, you can specify the object name in `msg.object`.\r\n\r\n### Inputs\r\n- `object` - _string_\r\n\r\n  WMI object name (optional)\r\n\r\n### Outputs\r\n- `payload` - _object_\r\n\r\n  WMI object in JSON format\r\n\r\n**Note**: This node can be used on the Windows OS only.",
+        "info": "This node retrieves the information of the WMI object on Windows OS.\r\nCurrently, this node supports the following objects in the pull-down menu on the node property UI.\r\n\r\n- [Processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)\r\n- [BIOS](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bios)\r\n- [LogicalDisk](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-logicaldisk)\r\n- [PointingDevice](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pointingdevice)\r\n- [Keyboard](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-keyboard)\r\n- [Battery](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-battery)\r\n- [OperatingSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-operatingsystem)\r\n- [ComputerSystem](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-computersystem)\r\n- [SystemEnclosure](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-systemenclosure)\r\n- [Desktop](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktop)\r\n- [DesktopMonitor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-desktopmonitor)\r\n- [UserAccount](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-useraccount)\r\n\r\nIf you want to get other WMI objects, you can specify the object name in `msg.object`.\r\n\r\n### Inputs\r\n- `object` - _string_\r\n\r\n  WMI object name (optional)\r\n\r\n### Outputs\r\n- `payload` - _object_\r\n\r\n  WMI object in JSON format\r\n\r\n**Note**: This node can be used on the Windows OS only.",
         "category": "function",
         "in": [
             {
@@ -32,7 +32,7 @@
             {
                 "name": "object",
                 "type": "str",
-                "value": "Processor",
+                "value": "Win32_Processor",
                 "ui": {
                     "icon": "font-awesome/fa-desktop",
                     "type": "select",
@@ -55,12 +55,6 @@
                                     "en-US": "LogicalDisk"
                                 },
                                 "v": "Win32_LogicalDisk"
-                            },
-                            {
-                                "l": {
-                                    "en-US": "CDROMDrive"
-                                },
-                                "v": "Win32_CDROMDrive"
                             },
                             {
                                 "l": {
@@ -124,7 +118,7 @@
         "meta": {
             "module": "node-red-contrib-wmi",
             "type": "wmi",
-            "version": "0.1.5",
+            "version": "0.1.6",
             "author": "kazuhitoyokoi@nodered.jp",
             "desc": "A node to retrieve WMI object on Windows OS",
             "keywords": "node-red,wmi,windows",
@@ -328,12 +322,10 @@
                 "type": "str"
             }
         ],
-        "x": 470,
-        "y": 240,
+        "x": 310,
+        "y": 120,
         "wires": [
-            [
-                "eb385fbdac73d5fb"
-            ]
+            []
         ]
     }
 ]

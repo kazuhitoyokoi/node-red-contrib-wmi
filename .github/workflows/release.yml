@@ -17,7 +17,7 @@ jobs:
           #cat package.json | jq ".repository.type|=\"git\"|.repository.url|=\"https://github.com/$GITHUB_REPOSITORY.git\"" > tmp; mv tmp package.json
           cat package.json | jq ".bugs.url|=\"https://github.com/$GITHUB_ACTOR\"" > tmp; mv tmp package.json
           mv ../examples .
-          #npm publish
+          if [${NODE_AUTH_TOKEN}]; then npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - uses: softprops/action-gh-release@v1

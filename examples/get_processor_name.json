@@ -1,6 +1,20 @@
 [
     {
-        "id": "43fb0d41c9f893f5",
+        "id": "f54081adfba3c8f8",
+        "type": "wmi",
+        "z": "7089087274cfd256",
+        "name": "",
+        "object": "Win32_Processor",
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "ec5b234634bff712"
+            ]
+        ]
+    },
+    {
+        "id": "eaaa7bd354acc2f8",
         "type": "inject",
         "z": "7089087274cfd256",
         "name": "",
@@ -21,15 +35,15 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 120,
+        "y": 100,
         "wires": [
             [
-                "5e68caaa2a110ed4"
+                "f54081adfba3c8f8"
             ]
         ]
     },
     {
-        "id": "4df1b14315bf2f22",
+        "id": "ec5b234634bff712",
         "type": "debug",
         "z": "7089087274cfd256",
         "name": "",
@@ -42,22 +56,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 490,
-        "y": 120,
+        "y": 100,
         "wires": []
-    },
-    {
-        "id": "5e68caaa2a110ed4",
-        "type": "wmi",
-        "z": "7089087274cfd256",
-        "name": "",
-        "object": "Win32_Processor",
-        "credentials": {},
-        "x": 310,
-        "y": 120,
-        "wires": [
-            [
-                "4df1b14315bf2f22"
-            ]
-        ]
     }
 ]

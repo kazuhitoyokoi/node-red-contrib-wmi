@@ -16,7 +16,7 @@ jobs:
           cd node-red-contrib-*/
           #cat package.json | jq ".repository.type|=\"git\"|.repository.url|=\"https://github.com/$GITHUB_REPOSITORY.git\"" > tmp; mv tmp package.json
           cat package.json | jq ".bugs.url|=\"https://github.com/$GITHUB_ACTOR\"" > tmp; mv tmp package.json
-          mv ../examples .
+          mv ../examples . || true
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

@@ -1,0 +1,136 @@
+[
+    {
+        "id": "e663831c7b733b97",
+        "type": "inject",
+        "z": "badcc7d7db9a26b8",
+        "name": "10秒毎に定期実行",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "4610d6fbbd9a31f8"
+            ]
+        ]
+    },
+    {
+        "id": "4610d6fbbd9a31f8",
+        "type": "wmi",
+        "z": "badcc7d7db9a26b8",
+        "name": "バッテリ情報取得",
+        "object": "Win32_Battery",
+        "credentials": {},
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "1dc240c073a42a74"
+            ]
+        ]
+    },
+    {
+        "id": "1dc240c073a42a74",
+        "type": "change",
+        "z": "badcc7d7db9a26b8",
+        "name": "電圧値を代入",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.DesignVoltage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "1e2a1f0236a4c41d"
+            ]
+        ]
+    },
+    {
+        "id": "1e2a1f0236a4c41d",
+        "type": "ui_chart",
+        "z": "badcc7d7db9a26b8",
+        "name": "",
+        "group": "6240b30c4cd402bb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "電圧 (mV)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 520,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6240b30c4cd402bb",
+        "type": "ui_group",
+        "name": "デフォルト",
+        "tab": "c3edd3cc708e929d",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c3edd3cc708e929d",
+        "type": "ui_tab",
+        "name": "電力可視化ダッシュボード",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

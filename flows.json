@@ -8,18 +8,18 @@
         "in": [
             {
                 "x": 60,
-                "y": 120,
+                "y": 140,
                 "wires": [
                     {
-                        "id": "49bc3c94198cb47a"
+                        "id": "19c7f3ec50e21366"
                     }
                 ]
             }
         ],
         "out": [
             {
-                "x": 1140,
-                "y": 80,
+                "x": 1380,
+                "y": 220,
                 "wires": [
                     {
                         "id": "577b676db8dff1da",
@@ -127,8 +127,8 @@
         "color": "#E9967A",
         "icon": "font-awesome/fa-desktop",
         "status": {
-            "x": 1000,
-            "y": 160,
+            "x": 1240,
+            "y": 340,
             "wires": [
                 {
                     "id": "1441a297ee2d57e2",
@@ -136,6 +136,14 @@
                 },
                 {
                     "id": "d7b32c02dafd1b17",
+                    "port": 1
+                },
+                {
+                    "id": "bfd09feeb01f0137",
+                    "port": 1
+                },
+                {
+                    "id": "5a1ea7b0f694b333",
                     "port": 1
                 }
             ]
@@ -153,8 +161,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 850,
-        "y": 120,
+        "x": 1050,
+        "y": 180,
         "wires": [
             [
                 "577b676db8dff1da"
@@ -171,8 +179,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1030,
-        "y": 80,
+        "x": 1270,
+        "y": 220,
         "wires": [
             []
         ]
@@ -196,7 +204,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
+        "x": 760,
         "y": 120,
         "wires": [
             [
@@ -210,10 +218,12 @@
         "z": "1502f21895a467b2",
         "name": "",
         "scope": [
-            "d7b32c02dafd1b17"
+            "d7b32c02dafd1b17",
+            "bfd09feeb01f0137",
+            "5a1ea7b0f694b333"
         ],
-        "x": 880,
-        "y": 200,
+        "x": 1080,
+        "y": 420,
         "wires": [
             []
         ]
@@ -242,7 +252,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 230,
+        "x": 470,
         "y": 120,
         "wires": [
             [
@@ -275,7 +285,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 550,
+        "x": 790,
         "y": 60,
         "wires": [
             [
@@ -302,7 +312,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
+        "x": 760,
         "y": 180,
         "wires": [
             [
@@ -311,21 +321,120 @@
         ]
     },
     {
-        "id": "8691cfc88b3b60e5",
-        "type": "subflow:1502f21895a467b2",
-        "z": "7089087274cfd256",
-        "name": "",
-        "env": [
+        "id": "5a1ea7b0f694b333",
+        "type": "exec",
+        "z": "1502f21895a467b2",
+        "command": "ioreg -c AppleSmartBattery | grep -E '^.+\"Voltage\" = [0-9]+$' | sed -r 's/^.+\"Voltage\" = ([0-9]+)$/{\"DesignVoltage\":\\1}/' ",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "get voltage",
+        "x": 1070,
+        "y": 340,
+        "wires": [
+            [
+                "577b676db8dff1da"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bfd09feeb01f0137",
+        "type": "exec",
+        "z": "1502f21895a467b2",
+        "command": "top -l 2 | grep -E \"^CPU\" | tail -1 | awk '{print \"{\\\"LoadPercentage\\\":\"$3+$5\"}\"}'",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "get cpu usage",
+        "x": 1060,
+        "y": 260,
+        "wires": [
+            [
+                "577b676db8dff1da"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "19c7f3ec50e21366",
+        "type": "function",
+        "z": "1502f21895a467b2",
+        "name": "Windows or macOS?",
+        "func": "if (process.platform === 'win32') {\n    return [msg, null];\n} else if (process.platform === 'darwin') {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
             {
-                "name": "object",
-                "value": "Win32_ComputerSystem",
-                "type": "str"
+                "var": "process",
+                "module": "process"
             }
         ],
-        "x": 310,
-        "y": 120,
+        "x": 220,
+        "y": 140,
         "wires": [
-            []
+            [
+                "49bc3c94198cb47a"
+            ],
+            [
+                "b30a3d4cda2b1c53"
+            ]
+        ]
+    },
+    {
+        "id": "b30a3d4cda2b1c53",
+        "type": "switch",
+        "z": "1502f21895a467b2",
+        "name": "Processor or Battery?",
+        "property": "object",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Win32_Processor",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Win32_Battery",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 720,
+        "y": 300,
+        "wires": [
+            [
+                "bfd09feeb01f0137"
+            ],
+            [
+                "5a1ea7b0f694b333"
+            ]
+        ]
+    },
+    {
+        "id": "8691cfc88b3b60e5",
+        "type": "subflow:1502f21895a467b2",
+        "z": "4bc54fc94dad9b87",
+        "name": "",
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "d6567781a69e798f"
+            ]
         ]
     }
 ]

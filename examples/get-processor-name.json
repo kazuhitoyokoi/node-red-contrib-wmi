@@ -1,0 +1,62 @@
+[
+    {
+        "id": "f54081adfba3c8f8",
+        "type": "wmi",
+        "z": "7089087274cfd256",
+        "name": "",
+        "object": "Win32_Processor",
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "ec5b234634bff712"
+            ]
+        ]
+    },
+    {
+        "id": "eaaa7bd354acc2f8",
+        "type": "inject",
+        "z": "7089087274cfd256",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "f54081adfba3c8f8"
+            ]
+        ]
+    },
+    {
+        "id": "ec5b234634bff712",
+        "type": "debug",
+        "z": "7089087274cfd256",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.Name",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    }
+]

@@ -1,0 +1,119 @@
+[
+    {
+        "id": "6a7e8ea50b4df169",
+        "type": "inject",
+        "z": "4bc54fc94dad9b87",
+        "name": "Every 10 sec",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "b6c7d47e49d7840f"
+            ]
+        ]
+    },
+    {
+        "id": "b6c7d47e49d7840f",
+        "type": "wmi",
+        "z": "4bc54fc94dad9b87",
+        "name": "Retrieve CPU info",
+        "object": "Win32_Processor",
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "4e970b5e744ee533"
+            ]
+        ]
+    },
+    {
+        "id": "4e970b5e744ee533",
+        "type": "change",
+        "z": "4bc54fc94dad9b87",
+        "name": "Set CPU load",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.LoadPercentage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "0c431122706b75ad"
+            ]
+        ]
+    },
+    {
+        "id": "0c431122706b75ad",
+        "type": "ui_gauge",
+        "z": "4bc54fc94dad9b87",
+        "name": "",
+        "group": "6240b30c4cd402bb",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "CPU load",
+        "label": "",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6240b30c4cd402bb",
+        "type": "ui_group",
+        "name": "",
+        "tab": "c3edd3cc708e929d",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c3edd3cc708e929d",
+        "type": "ui_tab",
+        "name": "PC usage dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,135 @@
+[
+    {
+        "id": "c422cba050a94143",
+        "type": "inject",
+        "z": "4bc54fc94dad9b87",
+        "name": "Every 10 sec",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "3daa5388c3186a44"
+            ]
+        ]
+    },
+    {
+        "id": "3daa5388c3186a44",
+        "type": "wmi",
+        "z": "4bc54fc94dad9b87",
+        "name": "Retrieve battery info",
+        "object": "Win32_Battery",
+        "x": 620,
+        "y": 560,
+        "wires": [
+            [
+                "6a0abe55a6d28374"
+            ]
+        ]
+    },
+    {
+        "id": "6a0abe55a6d28374",
+        "type": "change",
+        "z": "4bc54fc94dad9b87",
+        "name": "Set Voltage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.DesignVoltage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 640,
+        "wires": [
+            [
+                "f717bf5300f99afe"
+            ]
+        ]
+    },
+    {
+        "id": "f717bf5300f99afe",
+        "type": "ui_chart",
+        "z": "4bc54fc94dad9b87",
+        "name": "",
+        "group": "6240b30c4cd402bb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Voltage (mV)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 590,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6240b30c4cd402bb",
+        "type": "ui_group",
+        "name": "",
+        "tab": "c3edd3cc708e929d",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c3edd3cc708e929d",
+        "type": "ui_tab",
+        "name": "Power monitoring dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

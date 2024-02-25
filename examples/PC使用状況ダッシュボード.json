@@ -2,7 +2,7 @@
     {
         "id": "6a7e8ea50b4df169",
         "type": "inject",
-        "z": "3b12f6d34c03817d",
+        "z": "8970fec104d97bc8",
         "name": "10秒毎に定期実行",
         "props": [
             {
@@ -20,7 +20,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 290,
+        "x": 210,
         "y": 140,
         "wires": [
             [
@@ -31,10 +31,10 @@
     {
         "id": "b6c7d47e49d7840f",
         "type": "wmi",
-        "z": "3b12f6d34c03817d",
+        "z": "8970fec104d97bc8",
         "name": "CPU情報取得",
         "object": "Win32_Processor",
-        "x": 500,
+        "x": 420,
         "y": 140,
         "wires": [
             [
@@ -45,7 +45,7 @@
     {
         "id": "4e970b5e744ee533",
         "type": "change",
-        "z": "3b12f6d34c03817d",
+        "z": "8970fec104d97bc8",
         "name": "CPU使用率を代入",
         "rules": [
             {
@@ -61,59 +61,112 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
+        "x": 230,
         "y": 220,
         "wires": [
             [
-                "0c431122706b75ad"
+                "e5ce23dd709b4474"
             ]
         ]
     },
     {
-        "id": "0c431122706b75ad",
-        "type": "ui_gauge",
-        "z": "3b12f6d34c03817d",
+        "id": "e5ce23dd709b4474",
+        "type": "ui-gauge",
+        "z": "8970fec104d97bc8",
         "name": "",
-        "group": "6240b30c4cd402bb",
-        "order": 1,
+        "group": "01594ffdec8496b7",
+        "order": 0,
         "width": 0,
         "height": 0,
-        "gtype": "donut",
+        "gtype": "gauge-34",
+        "gstyle": "rounded",
         "title": "CPU使用率",
-        "label": "",
-        "format": "{{value}} %",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353"
+            }
+        ],
         "min": 0,
         "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
         "className": "",
-        "x": 510,
+        "x": 430,
         "y": 220,
         "wires": []
     },
     {
-        "id": "6240b30c4cd402bb",
-        "type": "ui_group",
-        "name": "デフォルト",
-        "tab": "c3edd3cc708e929d",
-        "order": 1,
-        "disp": false,
+        "id": "01594ffdec8496b7",
+        "type": "ui-group",
+        "name": "グループ名",
+        "page": "a5956a4dbba1eb67",
         "width": "6",
-        "collapse": false,
-        "className": ""
+        "height": "1",
+        "order": -1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
     },
     {
-        "id": "c3edd3cc708e929d",
-        "type": "ui_tab",
+        "id": "a5956a4dbba1eb67",
+        "type": "ui-page",
         "name": "PC使用状況ダッシュボード",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
+        "ui": "9415734ed0a669c3",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "e3e6305555cda9a6",
+        "order": -1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "9415734ed0a669c3",
+        "type": "ui-base",
+        "name": "画面名",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "navigationStyle": "default"
+    },
+    {
+        "id": "e3e6305555cda9a6",
+        "type": "ui-theme",
+        "name": "テーマ名",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
     }
 ]

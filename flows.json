@@ -118,7 +118,7 @@
         "meta": {
             "module": "node-red-contrib-wmi",
             "type": "wmi",
-            "version": "0.2.7",
+            "version": "0.2.8",
             "author": "kazuhitoyokoi@nodered.jp",
             "desc": "A node to retrieve WMI (Windows Management Instrumentation) object on Windows OS",
             "keywords": "node-red,wmi,windows",
